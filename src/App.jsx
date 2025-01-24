@@ -3,6 +3,7 @@ import Counter from "./components/Counter";
 import Stats from "./components/Stats";
 import { decrement, increment } from "./features/counters/countersSlice";
 import Posts from "./components/Posts";
+import DynamicCounter from "./components/DynamicCounter";
 
 
 export default function App() {
@@ -27,6 +28,8 @@ export default function App() {
             <h1 className="max-w-md mx-auto text-center text-2xl font-bold">
                 Simple Counter Application
             </h1>
+
+            <DynamicCounter/>
 
             <div className="max-w-md mx-auto mt-10 space-y-5">
                 {

@@ -39,7 +39,7 @@
 
 1.  To use redux easily we can use Redux Toolkit that is provided by Redux. Vanilla Redux I complex and needs a vast amount of boilerplate code. // npm i @reduxjs/toolkit react-redux.
 
------------------------------- Redux asynchronous action ------------------------------
+------------------------------ Redux asynchronous action/redux-thunk ------------------------------
 
 1.  Redux-store is sync always but there will be some action that must do asynchronous operations and to achieve that we need redux-thunk. we dispatch an action as always and that action needs to handle an api call that action going towards the store but just before reaching the store + reducer; a middleware/interceptor will catch it and perform the asynchronous operation after getting the response the middleware will let the action to reach the store after creating the action.
 2.  steps:- create a slice > write initial state{data:[], isLoading: boolean, isError:boolean, error: string} > slice = createSlice({
@@ -105,9 +105,30 @@
 
 ------------------------------ applying multiple middleware ------------------------------
 
-1.  We used a custom middleware before but there are lots this as one will work to handle asynchronously operations and login function ect.
+1.  We used a custom middleware before but there are lots this as one will work to handle asynchronously operations and login
+    function ect.
+2.  multiple middleware:- middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger, theMiddleware),
 
-2.  .
+------------------------------ extraReducers ------------------------------
+
+1.  When we need to run multiple reducers on a single dispatch:- pass the "extraReducers" option to createSlice in slice file.
+    extraReducers: (builder) => {
+    builder.addCase(increment, (state, action) => {
+    state.value += (action.payload);
+    }
+    )
+    }
+    // import the action and the callback-reducer function will work when the imported action will be called in other slice and modify this slice's values.
+2.  In vanilla-redux; When we dispatch an action all the reducers receives the action any work when action is matched. Hence every
+    reducer getting every action so we could conditionally handle all the stuffs.
+
+------------------------------ Project setUp ------------------------------
+
+1.  In react app we can easily initialize redux but it takes a few minutes but we can also use template while creating the project is "npx create-react-app . --template redux" this is official redux template. It will create the project including all the stuffs of redux such as RTK,React-redux, few thunk-middleware, redux-dev-tools, etc. then we need to create the slices and use them.
+
+------------------------------ RTK Query ------------------------------
+
+1.  
 
 ------------------------------ . ------------------------------
 
@@ -117,15 +138,4 @@
 
 1.  .
 
------------------------------- . ------------------------------
-
-1.  .
-
------------------------------- . ------------------------------
-
-1.  .
-
------------------------------- . ------------------------------
-
-1.  .
 # re-redux

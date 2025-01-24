@@ -1,4 +1,11 @@
-import { rootReducer } from "../store";
+
+import countersReducer from "../../features/counters/countersSlice";
+import dynamicCounterReducer from "../../features/dynamicCounter/dynamicCounterSlice";
+
+import { combineReducers } from "@reduxjs/toolkit";
+
+
+
 
 const theMiddleware = (store) => (next) => (action) => { // redux provides the props this way that's why we received this way.
     // store:- store object to do store.dispatch and etc operations.
@@ -13,9 +20,17 @@ const theMiddleware = (store) => (next) => (action) => { // redux provides the p
         if we wat to do this we need to call the reducer here and generate the next state to check
         fist create an array with the action to call reduce method and need to pass the rootReducer function and as there is no accumulator so it needs previous state to calculate the next state.
      */
-    const nextState = [action].reduce(rootReducer, store.getState());
+
+    const states = store.getState()
+    const filteredStates = { counters: states.counters, dynamicCounter: states.dynamicCounter }
+
+    const nextState = [action].reduce(combineReducers({
+        counters: countersReducer,
+        dynamicCounter: dynamicCounterReducer,
+    }), filteredStates);
     // const nextState = [action].reduce(countersReducer, store.getState().counters); // work with single reducer
     console.log(JSON.stringify(nextState));
+
 
     return next(action);
 }
