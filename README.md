@@ -128,7 +128,15 @@
 
 ------------------------------ RTK Query ------------------------------
 
-1.  
+1.  To retrieve the posts ues had to use redux-thunk and work with every state of promises in extraReducers and there
+    was huge amount of code for jst single request> If we had to handle hundreds of APIs then it will be the ultimate mess.Beside these we had to dispatch those thunk-functions. It doesn't cache the response hence each rerender it retrieves data from the server.
+2.  RTK Query:- It is a data-fetching and caching tool.
+    and other things it handles:-
+    1. Tracking the Loading, error, and success states.
+    2. Avoids duplicate requests for same data.
+    3. Optimistic updates to make the UI feels faster:- User will feel the data is loaded but RQ will controlled-refetch and update if any changes detected and user won't feel anything.
+    4. Managing cache lifetimes as the user interacts with the UI:- Due to user's interact if any changes occurred in the server then we had to write many local-complex-state, redux-states, thunk-functions, reducers etc. But using RTKQ we not need to use anything like that and everything related to APIs will be easier and client and server will stay sync. ReactQuery is also awesome but this is masterpiece for developers of redux-ceo-system.
+    5. 
 
 ------------------------------ . ------------------------------
 

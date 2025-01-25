@@ -18,7 +18,7 @@ const dynamicCreateSlice = createSlice({
     }, // reason behind to call it reduces instead reducer because there will be many function as increment and decrement and many more; so each time this will work differently for different actions so it's reducer. 
     extraReducers: (builder) => {
         builder.addCase(increment, (state, action) => {
-            state.value += (action.payload);
+            state.value += (state.value)
         })
     }
 })
