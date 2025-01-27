@@ -130,17 +130,28 @@
 
 1.  To retrieve the posts ues had to use redux-thunk and work with every state of promises in extraReducers and there
     was huge amount of code for jst single request> If we had to handle hundreds of APIs then it will be the ultimate mess.Beside these we had to dispatch those thunk-functions. It doesn't cache the response hence each rerender it retrieves data from the server.
-2.  RTK Query:- It is a data-fetching and caching tool.
+2.  RTK Query:- It is a data-fetching and caching tool it stays pre-installed with RTK.
     and other things it handles:-
     1. Tracking the Loading, error, and success states.
     2. Avoids duplicate requests for same data.
     3. Optimistic updates to make the UI feels faster:- User will feel the data is loaded but RQ will controlled-refetch and update if any changes detected and user won't feel anything.
     4. Managing cache lifetimes as the user interacts with the UI:- Due to user's interact if any changes occurred in the server then we had to write many local-complex-state, redux-states, thunk-functions, reducers etc. But using RTKQ we not need to use anything like that and everything related to APIs will be easier and client and server will stay sync. ReactQuery is also awesome but this is masterpiece for developers of redux-ceo-system.
-    5. 
+    5.
 
------------------------------- . ------------------------------
+------------------------------ Applications of RTKQ with an app ------------------------------
 
-1.  .
+1.  To work with RTKQ need to set-up a store then create the slices but in different way then usual and place then into
+    features/api/apiSlice.js because the slices about RTKQ is be used for APIs only.
+2.  Work flow:-
+    1. We need to think the entire app's api related features in a single slice.
+    2. Instead of { createSlice } from "@reduxjs/toolkit" now we'll use {createApi} from "@reduxjs/toolkit/query/react".
+       it takes a few options { // read the apiSlice.js file }
+    3. now it's the time to place the reducers into the store as -[apiSlice.reducerPath]: apiSlice.reducer- we didn't write any reducers, but RTkq created all with every state such as loading,error etc; we just wrote the endpoints.
+    4. we also need some middleware to enable features as caching, revalidation etc but we shouldn't write those our won just need to pass in concat method -apiSlice.middleware-.
+    5. ----our store is configured---- it's time ti write the endpoints. Then we'll connect the apis and use those with hooks.
+    6. endpoints: (builder) => ({ apiName: }) :- retrieving data means query modifying data means mutation/change. At first we'll
+       write a query to retrieve data. we'll build the query using "builder" object builder.query({...read apiSlice.js})
+    7. call the the hook and destructure the outputs and render the contents logically with the states as we won't get the data     initially because it works using useEffect under the hood hence won't get the data in initial render.
 
 ------------------------------ . ------------------------------
 

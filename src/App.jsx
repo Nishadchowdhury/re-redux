@@ -21,7 +21,7 @@ export default function App() {
     const counters = useSelector((states) => states.counters);
     const dispatch = useDispatch();
 
-    const [showVideoApp, setShowVideoApp] = useState(false)
+    const [showVideoApp, setShowVideoApp] = useState(!false)
 
     const totalCount = counters.reduce((sum, current) => sum + current.value, 0)
 
@@ -80,9 +80,9 @@ export default function App() {
 
                 </div>}
 
-            <div className="fixed top-10 left-5 h-14 w-full opacity-50 pointer-events-none  " >
+            <div className="fixed top-10 left-10 h-14 w-full opacity-50 pointer-events-none  " >
                 <Button handler={() => setShowVideoApp(p => !p)}  >
-                    Switch
+                    ↺
                 </Button>
             </div>
 

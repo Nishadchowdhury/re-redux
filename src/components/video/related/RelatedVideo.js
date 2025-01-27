@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
-export default function RelatedVideo() {
+export default function RelatedVideo({ video }) {
+
+
     return (
         <div className="w-full flex flex-row gap-2 mb-4">
             <div className="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]">
