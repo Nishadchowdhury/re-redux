@@ -5,7 +5,10 @@ import Video from "./Video";
 
 export default function Videos() {
 
-    const { data: videos, isLoading, isError } = useGetVideosQuery();
+    const { data: videos, isLoading, isError } = useGetVideosQuery(undefined, {
+        pollingInterval: 3000, // auto refetch
+
+    });
 
     console.log(videos);
 

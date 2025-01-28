@@ -8,7 +8,7 @@ export default function TextArea({ title, ...attributes }) {
                 <textarea
                     {...attributes}
                     rows="3"
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md max-h-36 min-h-14"
                 ></textarea>
             </div>
             <p className="mt-2 text-sm text-gray-500">
