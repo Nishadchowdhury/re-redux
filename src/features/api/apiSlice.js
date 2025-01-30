@@ -22,7 +22,7 @@ export const apiSlice = createApi({
         getUniqueVideo: builder.query({
             query: (id) => `/videos/${id}`,
             providesTags: (_, __, arg) => [
-                { type: "video", id: arg.id }, // this will provide the corresponding cache.
+                { type: "video", id: arg }, // this will provide the corresponding cache.
             ]
         }),
         ///videos?title_like=css&title_like=react
@@ -63,6 +63,14 @@ export const apiSlice = createApi({
                 { type: "RelatedVideos", id: arg.id }, // invalid the individual id's data
             ]
 
+        }),
+        deleteVideo: builder.mutation({
+            query: (id) => ({
+                url: '/videos/' + id,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ["videos"]
+
         })
 
 
@@ -78,5 +86,6 @@ export const {
     useGetRelatedVideosQuery,
     useAddVideoMutation,
     useEditVideoMutation,
+    useDeleteVideoMutation
 
 } = apiSlice; 

@@ -155,16 +155,23 @@
     8. we also can provide option white ingoing the custom hook by redux in components to manipulate the request behavior such as refetch -see in videos.jsx- .
 3.  mutation -changing requests- :-
     Creating mutation:-
+
     1. other things would be same but this time the endpoint will be created with a builder.mutation and
        and receive options with the query will return an object not a string. this method is the most advance -see in apiSlice.js-
     2. this time the hook will rerun a tuple instead -[addThing, { data: video, ...theBasicOthers }]-
     3. After adding the video need to make invalid the videos array that is in the cache. To achieve this need to take an array of tags in "createApi" function; with "tagTypes" option. and we can use the tags in endpoints then we can invalid the tag to destroy its cache.
+
 4.  Updating mutation:-
+
     1. everything as POST but there is many cases about handling cache.
        1. First of all updating an item requires invalidation of the home page array including that item.
        2. related items cache. 1. whitelist the the tag. 2. place in the endpoint with an unique identifier. 3. invalid with the unique identifier.
        3. Only invalid that unique item's cache. 1. whitelist the the tag. 2. place in the endpoint with an unique identifier. 3. invalid with the unique identifier.
           -check in apiSlice.js file-
+          z.that's who we can play with the cache of the application.
+
+5.  Deleting a video.
+    everything as before; just after deleting an item we must invalid all the queries related with it.
 
 ------------------------------ . ------------------------------
 
